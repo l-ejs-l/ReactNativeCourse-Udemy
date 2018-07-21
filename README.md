@@ -2,5 +2,5 @@
 
 ## This repo contains all my progress on the course using directories for each unit.
 
-- [hello-world](http://link)
+- [hello-world](https://github.com/EmilioJeldes/react-native-udemy-course/tree/master/hello-world)
 - [basics-componets](http://link)
