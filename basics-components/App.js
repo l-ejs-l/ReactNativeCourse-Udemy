@@ -6,36 +6,22 @@ import SearchBar from './src/components/SearchBar/SearchBar';
 
 export default class App extends React.Component {
   state = {
-    placeName: '',
     places: []
   };
 
-  placeNameChangeHandler = val => {
-    this.setState({ placeName: val });
-  };
-
-  placeSubmitHandler = () => {
-    if (this.state.placeName.trim() !== '') {
-      this.setState(state => {
-        return {
-          places: state.places.concat(state.placeName),
-          placeName: ''
-        };
-      });
-    }
+  buttonOnPressHandler = inputValue => {
+    this.setState(state => ({ places: state.places.concat(inputValue) }));
   };
 
   render() {
-    const { placeName, places } = this.state;
+    const { places } = this.state;
 
     return (
       <View style={styles.container}>
         <SearchBar
           inputPlaceholder={'An awesome place'}
-          inputValue={placeName}
-          inputOnChangeText={this.placeNameChangeHandler}
           buttonTitle={'Add'}
-          buttonOnPress={this.placeSubmitHandler}
+          buttonOnPress={this.buttonOnPressHandler}
         />
         <List listItems={places} />
       </View>

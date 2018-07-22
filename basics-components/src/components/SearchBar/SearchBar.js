@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-const SearchBar = props => {
-  return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        placeholder={props.inputPlaceholder || ''}
-        value={props.inputValue || ''}
-        onChangeText={props.inputOnChangeText}
-      />
-      <Button
-        title={props.buttonTitle || 'Button'}
-        style={styles.button}
-        onPress={props.buttonOnPress}
-      />
-    </View>
-  );
-};
+class SearchBar extends Component {
+  state = {
+    inputValue: ''
+  };
+
+  changeInputValueHandler = val => {
+    this.setState({ inputValue: val });
+  };
+
+  submitHandler = () => {
+    if (this.state.inputValue.trim() !== '') {
+      this.props.buttonOnPress(this.state.inputValue);
+      this.setState({ inputValue: '' });
+    }
+  };
+
+  render() {
+    return (
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder={this.props.inputPlaceholder || ''}
+          value={this.state.inputValue}
+          onChangeText={this.changeInputValueHandler}
+        />
+        <Button
+          title={this.props.buttonTitle || 'Button'}
+          style={styles.button}
+          onPress={this.submitHandler}
+        />
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -37,8 +54,6 @@ const styles = StyleSheet.create({
 
 SearchBar.propTypes = {
   inputPlaceholder: PropTypes.string,
-  inputValue: PropTypes.string,
-  inputOnChangeText: PropTypes.func.isRequired,
   buttonTitle: PropTypes.string,
   buttonOnPress: PropTypes.func.isRequired
 };
