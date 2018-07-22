@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 const SearchBar = props => {
   return (
@@ -33,5 +34,13 @@ const styles = StyleSheet.create({
     width: '30%'
   }
 });
+
+SearchBar.propTypes = {
+  inputPlaceholder: PropTypes.string,
+  inputValue: PropTypes.string,
+  inputOnChangeText: PropTypes.func.isRequired,
+  buttonTitle: PropTypes.string,
+  buttonOnPress: PropTypes.func.isRequired
+};
 
 export default SearchBar;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 import ListItem from '../ListItem/ListItem';
 
@@ -14,5 +15,9 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 });
+
+List.propTypes = {
+  listItems: PropTypes.array.isRequired
+};
 
 export default List;
